@@ -18,6 +18,7 @@ import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,7 +30,8 @@ public class AuthenticationController {
         UserService userService;
     
         @PostMapping("/signup") 
-        public ResponseEntity<Object> registerUser(@RequestBody UserDto userDto){
+        public ResponseEntity<Object> registerUser(@RequestBody 
+                                                    @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto){
             if(userService.existsByUsername(userDto.getUsername())){
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("error: Username is Already taken!");
             }
@@ -41,8 +43,8 @@ public class AuthenticationController {
             BeanUtils.copyProperties(userDto, userModel);
             userModel.setUserStatus(UserStatus.ACTIVE);
             userModel.setUserType(UserType.STUDENT);
-            userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC-8")));
-            userModel.setLasUpdateDate(LocalDateTime.now(ZoneId.of("UTC-8")));
+            userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
+            userModel.setLasUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
         
             userService.save(userModel);
 
