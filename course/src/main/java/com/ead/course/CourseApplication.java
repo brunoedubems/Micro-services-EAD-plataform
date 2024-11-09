@@ -3,7 +3,8 @@ package com.ead.course;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.ead.course")
+
 public class CourseApplication {
 
 	public static void main(String[] args) {
