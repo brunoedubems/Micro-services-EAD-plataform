@@ -10,9 +10,10 @@ public interface CourseService {
 
     void delete(CourseModel courseModel);
 
-   CourseModel save(CourseModel courseModel);
-   Optional<CourseModel> findById(UUID courseId);
+    CourseModel save(CourseModel courseModel);
 
-   List<CourseModel> findAll();
-    
+    Optional<CourseModel> findById(UUID courseId);
+
+    List<CourseModel> findAll();
+
 }

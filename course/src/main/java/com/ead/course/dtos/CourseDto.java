@@ -19,7 +19,7 @@ public class CourseDto {
     @NotBlank
     private String description;
 
-    private String imageUrl;
+      private String imageUrl;
 
     @NotNull
     private CourseStatus courseStatus;

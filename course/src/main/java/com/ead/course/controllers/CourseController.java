@@ -65,28 +65,28 @@ public class CourseController {
         }
 
         var courseModel = couseModelOptional.get();
-        courseModel.setName(courseDto.getName()); //BeanUtils.copyProperties(courseDto, CourseModel)
+        courseModel.setName(courseDto.getName()); // BeanUtils.copyProperties(courseDto, CourseModel)
         courseModel.setDescription(courseDto.getDescription());
         courseModel.setImageUrl(courseDto.getImageUrl());
         courseModel.setCourseStatus(courseDto.getCourseStatus());
         courseModel.setCourseLevel(courseDto.getCourseLevel());
         courseModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-      
+
         return ResponseEntity.status(HttpStatus.OK).body(courseService.save(courseModel));
     }
 
     @GetMapping()
-    public ResponseEntity<List<CourseModel>> getAllCourses(){
+    public ResponseEntity<List<CourseModel>> getAllCourses() {
         return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll());
     }
 
     @GetMapping("/{courseId}")
-    public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId){
+    public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId) {
         Optional<CourseModel> couseModelOptional = courseService.findById(courseId);
         if (!couseModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course Not Found");
         }
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(couseModelOptional);
     }
 }
