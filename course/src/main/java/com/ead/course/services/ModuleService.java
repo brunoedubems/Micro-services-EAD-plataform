@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.ead.course.models.LessonModel;
 import com.ead.course.models.ModuleModel;
 
 public interface ModuleService {
@@ -14,4 +15,6 @@ public interface ModuleService {
     Optional<ModuleModel> findModuleIntoCourse(UUID courseId, UUID moduleId);
 
     List<ModuleModel> findAllByCurse(UUID courseId);
+
+    Optional<ModuleModel> findById(UUID moduleId);
 }
